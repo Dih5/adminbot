@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """bot.py: A Telegram bot to admin your server"""
 
+from __future__ import print_function
+
 # ----------------------------------------------------------------------#
 #                               ,
 #                              ▓█      ██
@@ -61,7 +63,8 @@ logger = logging.getLogger(__name__)
 # Some utilities
 def remove_first_word(text):
     """Given a string, remove what is found before the first space"""
-    return text.split(" ", 1)[1]
+    l = text.split(" ", 1)
+    return l[1] if len(l) > 1 else ""
 
 
 def human_bytes(num, suffix='B'):
