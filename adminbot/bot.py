@@ -125,7 +125,7 @@ class AdminBot():
             logger.info("User %s (%s) called: %s" % (update.message.from_user.first_name,
                                                      update.message.from_user.id, update.message.text))
             if update.message.from_user.id not in self.config.admin_list:
-                update.message.reply_text("Permission denied.\nFind your own tree!")
+                update.message.reply_text("Permission denied.\nAsk the bot admin to add your user id.")
             else:
                 command_function(bot, update, self)
 
@@ -145,7 +145,7 @@ class AdminBot():
         logger.info("User %s (%s) said: %s" % (update.message.from_user.first_name,
                                                update.message.from_user.id, update.message.text))
         if update.message.from_user.id not in self.config.admin_list:
-            update.message.reply_text("Permission denied.\nFind your own tree!")
+            update.message.reply_text("Permission denied.\nAsk the bot admin to add your user id.")
             return
         user = update.message.from_user.id
         if user not in self.set_modes:
