@@ -157,14 +157,10 @@ class AdminBot():
             return
         return self.registered_chat_modes[mode](bot, update, self)
 
-    def _error_logger(bot, update, error):
-        """ Log errors"""
-        logger.warn('Update "%s" caused error "%s"' % (update, error))
-
     def start(self):
         """ Set up and start the bot"""
         self.updater.dispatcher.add_handler(MessageHandler([Filters.text], self._chat_callback))
-        self.updater.dispatcher.add_error_handler(self._error_logger)
+        self.updater.dispatcher.add_error_handler(lambda bot, update, error:logger.warn('Update "%s" caused error "%s"' % (update, error)))
         self.updater.start_polling()
         self.updater.idle()
 
